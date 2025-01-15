@@ -415,12 +415,12 @@
 //   },
 // ];
 
-// const getUserNames = (users) => {  
-//   return users.map(user => user.name);  
-// };  
+// const getUserNames = (users) => {
+//   return users.map(user => user.name);
+// };
 
  
-// console.log(getUserNames(users));  
+// console.log(getUserNames(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
 
 // Отримати масив імен всіх користувачів (поле name).
@@ -750,11 +750,573 @@
 // ]
 
 // const getUsersWithEyeColor = (users, color) => {
-//   return users.filter(eyes => eyes.eyeColor === color); 
+//   return users.filter(eyes => eyes.eyeColor === color);
 // };
 
 // console.log(getUsersWithEyeColor(users, 'blue')); // [Moore Hensley, Sharlene Bush, Carey Barr]
 // console.log(getUsersWithEyeColor(users, 'green')); // [Ross Vazquez, Elma Head]
 // console.log(getUsersWithEyeColor(users, 'brown')); // [Blackburn Dotson, Sheree Anthony]
 // console.log(getUsersWithEyeColor(users, 'yellow')); // []
+
+//***********TODO -  Метод reduce() ****************/
+
+// Метод reduce(callback, initialValue) використовується для послідовної обробки
+//  кожного елемента масиву із збереженням проміжного результату.
+//  Трохи складніший за інші методи для засвоєння, але результат вартий того.
+
+
+
+// array.reduce((previousValue, element, index, array) => {
+//   // Тіло колбек-функції
+// }, initialValue);
+
+
+
+// Не змінює оригінальний масив
+// Поелементно перебирає оригінальний масив
+// Повертає все, що завгодно (об’єкт, масив, рядок, число тощо)
+// Може замінити функціонал будь-якого іншого перебираючого методу масиву та навіть їх комбінацію
+
+
+// Метод reduce() очікує 2 параметри:
+
+
+
+// 1-й параметр (обов’язковий) — колбек-функція, яка "опрацьовує" кожен елемент масиву;
+
+// 2-й параметр (не обов’язковий) — initialValue початкове значення акумулятора.
+
+// Колбек - функція з параметра редьюса очікує в свою чергу чотири параметри.Ці параметри,
+//     так само як і в колбеках інших перебираючих методів масиву, можна не оголошувати,
+//         якщо вони вам не потрібні, але не можна порушувати їх послідовність:
+
+
+
+// 1-й параметр (previousValue) — це акумулятор, тобто проміжний результат. Значення, яке поверне колбек-функція на поточній ітерації, буде значенням цього параметра на наступній ітерації;
+
+// 2-й параметр — поточний елемент масиву;
+
+// 3-й параметр — індекс поточної ітерації;
+
+// 4-й параметр — посилання на вихідний масив.
+
+// Найлегше уявити його роботу на прикладі підрахунку суми елементів масиву.
+
+
+
+// const total = [2, 7, 3].reduce((previousValue, number) => {
+//   return previousValue + number;
+// }, 0);
+
+// console.log(total); // 12
+
+//***********OPTIMIZE =TEST*************/
+
+// const players = {
+//   mango: 1270,
+//   poly: 468,
+//   ajax: 710,
+//   kiwi: 244,
+// };
+// const playtimes = Object.values(players); // [1270, 468, 710, 244]
+
+
+// const totalPlayTime = playtimes.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+// const averagePlayTime = totalPlayTime / playtimes.length;
+
+// console.log(totalPlayTime);
+
+// console.log(averagePlayTime);
+
+//***********TODO -  Метод reduce() і масив об'єктів****************/
+
+
+// const students = [
+//   { name: "Mango", score: 83 },
+//   { name: "Poly", score: 59 },
+//   { name: "Ajax", score: 37 },
+//   { name: "Kiwi", score: 94 },
+//   { name: "Houston", score: 64 },
+// ];
+
+// // Назва акумулятора може бути довільною, це просто параметр функції
+// const totalScore = students.reduce((total, student) => {
+//   return total + student.score;
+// }, 0);
+
+// const averageScore = totalScore / students.length;
+
+
+//***********OPTIMIZE =TEST2*************/
+
+// const players = [
+//   { name: "Mango", playtime: 1270, gamesPlayed: 4 },
+//   { name: "Poly", playtime: 469, gamesPlayed: 2 },
+//   { name: "Ajax", playtime: 690, gamesPlayed: 3 },
+//   { name: "Kiwi", playtime: 241, gamesPlayed: 1 },
+// ];
+
+// const totalAveragePlaytimePerGame = players.reduce((gametime, player) => {
+//     const avplaytime = player.playtime / player.gamesPlayed;
+
+//     return gametime + avplaytime;
+// }, 0);
+
+// console.log(totalAveragePlaytimePerGame);
+
+
+//***********OPTIMIZE =TEST3*************/
+
+// const calculateTotalBalance = (users) => {
+//   return users.reduce((acc, user) => acc + user.balance, 0);
+// };
+
+// const users = [
+//   {
+//     name: "Moore Hensley",
+//     email: "moorehensley@indexia.com",
+//     eyeColor: "blue",
+//     friends: ["Sharron Pace"],
+//     isActive: false,
+//     balance: 2811,
+//     gender: "male"
+//   },
+//   {
+//     name: "Sharlene Bush",
+//     email: "sharlenebush@tubesys.com",
+//     eyeColor: "blue",
+//     friends: ["Briana Decker", "Sharron Pace"],
+//     isActive: true,
+//     balance: 3821,
+//     gender: "female"
+//   },
+//   {
+//     name: "Ross Vazquez",
+//     email: "rossvazquez@xinware.com",
+//     eyeColor: "green",
+//     friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
+//     isActive: false,
+//     balance: 3793,
+//     gender: "male"
+//   },
+//   {
+//     name: "Elma Head",
+//     email: "elmahead@omatom.com",
+//     eyeColor: "green",
+//     friends: ["Goldie Gentry", "Aisha Tran"],
+//     isActive: true,
+//     balance: 2278,
+//     gender: "female"
+//   },
+//   {
+//     name: "Carey Barr",
+//     email: "careybarr@nurali.com",
+//     eyeColor: "blue",
+//     friends: ["Jordan Sampson", "Eddie Strong"],
+//     isActive: true,
+//     balance: 3951,
+//     gender: "male"
+//   },
+//   {
+//     name: "Blackburn Dotson",
+//     email: "blackburndotson@furnigeer.com",
+//     eyeColor: "brown",
+//     friends: ["Jacklyn Lucas", "Linda Chapman"],
+//     isActive: false,
+//     balance: 1498,
+//     gender: "male"
+//   },
+//   {
+//     name: "Sheree Anthony",
+//     email: "shereeanthony@kog.com",
+//     eyeColor: "brown",
+//     friends: ["Goldie Gentry", "Briana Decker"],
+//     isActive: true,
+//     balance: 2764,
+//     gender: "female"
+//   }
+// ];
+
+
+// console.log(calculateTotalBalance(users)); // 20916
+
+
+//***********TODO -  Метод toSorted()****************/
+
+// array.toSorted();
+
+// Сортує вихідний масив
+// Повертає новий масив
+// За замовчуванням сортує за зростанням
+
+// const scores = [61, 19, 74, 35, 92, 56];
+// const ascendingScores = scores.toSorted();
+
+// console.log(scores); // [61, 19, 74, 35, 92, 56]
+// console.log(ascendingScores); // [19, 35, 56, 61, 74, 92]
+
+// Оскільки за замовчуванням перед сортуванням метод toSorted()
+//  приводить усі елементи масиву до рядків, то фактично елементи
+//   сортуються як рядки, тобто на основі їхніх значень у таблиці Unicode.
+//   Стандартне сортування чисел виглядає незвично, коли ми думаємо про числа,
+//     але зрозуміло, якщо знати, що числа були перетворені на рядки.
+
+// const scores = [27, 2, 41, 4, 7, 3, 75];
+
+// console.log(scores.toSorted()); // [2, 27, 3, 4, 41, 7, 75]
+
+// Масив рядків сортується за алфавітом.
+
+// const students = ["Jacob", "Artemis", "Solomon", "Adrian", "Kai", "Ganymede"];
+
+// console.log(students.toSorted()); // [ "Adrian", "Artemis", "Ganymede", "Jacob", "Kai", "Solomon" ]
+
+// const letters = ["b", "B", "a", "A", "c", "C"];
+
+// Водночас порядковий номер великих літер менший, ніж у малих.
+
+// console.log(letters.toSorted()); // ["A", "B", "C", "a", "b", "c"]
+
+//***********OPTIMIZE =TEST*************/
+
+// const releaseDates = [2016, 1967, 2008, 1984, 1973, 2012, 1997];
+// const authors = [
+//   "Tanith Lee",
+//   "Bernard Cornwell",
+//   "Robert Sheckley",
+//   "Fyodor Dostoevsky",
+// ];
+
+// const ascendingReleaseDates = releaseDates.toSorted();
+
+// const alphabeticalAuthors = authors.toSorted();
+
+// console.log(ascendingReleaseDates); // [1967, 1973, 1984, 1997, 2008, 2012, 2016]
+// console.log(alphabeticalAuthors); // ["Bernard Cornwell", "Fyodor Dostoevsky", "Robert Sheckley", "Tanith Lee"]
+
+//***********TODO -  Метод toSorted() Свій порядок сортування чисел****************/
+
+// Для зазначення свого порядку сортування методу toSorted(compareFunction) потрібно передати
+// колбек - функцію з двома параметрами.
+
+
+
+// Це функція порівняння(compare function), порядок сортування залежить від її результату.
+// Метод toSorted() буде викликати її для двох довільних елементів.
+
+
+
+// array.toSorted((a, b) => {
+//   // Callback function body
+// });
+
+
+
+// a — перший елемент для порівняння.
+// b — другий елемент для порівняння.
+
+
+// Сортування за зростанням
+
+
+
+// Якщо виклик compareFunction(a, b) повертає будь - яке негативне значення,
+//     тобто a менше b, сортування поставить a перед b.
+
+
+
+// const scores = [61, 19, 74, 35, 92, 56];
+// const ascendingScores = scores.toSorted((a, b) => a - b);
+// console.log(ascendingScores); // [19, 35, 56, 61, 74, 92]
+
+
+
+// Сортування за спаданням
+
+
+
+// Якщо виклик compareFunction(a, b) повертає будь - яке позитивне значення,
+//     тобто b більше a, сортування поставить b перед a.
+
+
+
+// const scores = [61, 19, 74, 35, 92, 56];
+// const descendingScores = scores.toSorted((a, b) => b - a);
+// console.log(descendingScores); // [92, 74, 61, 56, 35, 19]
+
+
+
+// Якщо виклик compareFunction(a, b) поверне 0, сортування залишить a і b незмінними
+//  по відношенню один до одного, але відсортує їх по відношенню до всіх інших елементів.
+
+
+
+// Зверни увагу, що при сортуванні масиву чисел і передачі в метод toSorted() колбек - функції,
+//     числа вже не будуть приводитися до рядків, тобто їх сортування буде очікуваним і звичним.
+
+//***********OPTIMIZE =TEST*************/
+
+// const releaseDates = [2016, 1967, 2008, 1984, 1973, 2012, 1997];
+
+// const ascendingReleaseDates = releaseDates.toSorted((a, b) => a - b);// порядок сортування за зростанням
+
+// const descendingReleaseDates = releaseDates.toSorted((a, b) => b - a); // порядок сортування за спаданням
+
+// console.log(ascendingReleaseDates); // [1967, 1973, 1984, 1997, 2008, 2012, 2016]
+// console.log(descendingReleaseDates); // [2016, 2012, 2008, 1997, 1984, 1973, 1967]
+
+//***********TODO -  Метод toSorted() Свій порядок сортування чисел****************/
+
+// Свій порядок сортування рядків
+
+
+
+// Для сортування рядків в алфавітному порядку, за зростанням або спаданням, використовується метод рядків localeCompare().
+
+
+
+// firstString.localeCompare(secondString)
+
+
+
+// Він викликається на рядку, який потрібно порівняти (firstString) з тим, що був переданий йому як аргумент (secondString).
+
+
+
+// "a".localeCompare("b"); // -1
+// "b".localeCompare("a"); // 1
+// "a".localeCompare("a"); // 0
+// "b".localeCompare("b"); // 0
+
+
+
+// Повертає негативне значення, якщо firstString повинен бути перед secondString
+// Повертає позитивне значення, якщо firstString повинен бути після secondString
+// Якщо рядки однакові, повертається нуль і їх послідовність по відношенню один до одного не змінюється
+
+
+// Метод localeCompare() зручно використовувати для сортування рядків, оскільки метод toSorted() очікує такі самі значення від колбек-функції.
+
+
+
+// const students = ["Jacob", "Artemis", "Solomon", "Adrian", "Kai", "Ganymede"];
+
+// const inAlphabetOrder = students.toSorted((a, b) => a.localeCompare(b));
+// console.log(inAlphabetOrder); // [ "Adrian", "Artemis", "Ganymede", "Jacob", "Kai", "Solomon" ]
+
+// const inReversedOrder = students.toSorted((a, b) => b.localeCompare(a));
+// console.log(inReversedOrder); // [ "Solomon", "Kai", "Jacob", "Ganymede", "Artemis", "Adrian" ]
+
+//***********OPTIMIZE =TEST*************/
+
+// const authors = [
+//   "Tanith Lee",
+//   "Bernard Cornwell",
+//   "Robert Sheckley",
+//   "Fyodor Dostoevsky",
+//   "Howard Lovecraft",
+// ];
+
+// const authorsInAlphabetOrder = authors.toSorted((a, b) => a.localeCompare(b));
+
+// const authorsInReversedOrder = authors.toSorted((a, b) => b.localeCompare(a));
+
+// console.log(authorsInAlphabetOrder); // [ 'Bernard Cornwell', 'Howard Lovecraft', 'Fyodor Dostoevsky', 'Robert Sheckley', 'Tanith Lee' ]
+// console.log(authorsInReversedOrder); // ["Tanith Lee", "Robert Sheckley", "Howard Lovecraft", "Fyodor Dostoevsky", "Bernard Cornwell"]
+
+//***********TODO -  Сортування об'єктів****************/
+
+
+// за зростанням кількості балів
+// за спаданням кількості балів
+// за ім'ям студента в алфавітному порядку
+
+
+// const students = [
+//   { name: "Mango", score: 83 },
+//   { name: "Poly", score: 59 },
+//   { name: "Ajax", score: 37 },
+//   { name: "Kiwi", score: 94 },
+// ];
+
+// const inAscendingScoreOrder = students.toSorted(
+//   (firstStudent, secondStudent) => firstStudent.score - secondStudent.score
+// );
+
+// const inDescendingScoreOrder = students.toSorted(
+//   (firstStudent, secondStudent) => secondStudent.score - firstStudent.score
+// );
+
+// const inAlphabeticalOrder = students.toSorted((firstStudent, secondStudent) =>
+//   firstStudent.name.localeCompare(secondStudent.name)
+// );
+
+//***********OPTIMIZE =TEST*************/
+
+// const books = [
+//   {
+//     title: "The Last Kingdom",
+//     author: "Bernard Cornwell",
+//     rating: 8.38,
+//   },
+//   {
+//     title: "Beside Still Waters",
+//     author: "Robert Sheckley",
+//     rating: 8.51,
+//   },
+//   {
+//     title: "The Dream of a Ridiculous Man",
+//     author: "Fyodor Dostoevsky",
+//     rating: 7.75,
+//   },
+//   {
+//     title: "Redder Than Blood",
+//     author: "Tanith Lee",
+//     rating: 7.94,
+//   },
+//   {
+//     title: "Enemy of God",
+//     author: "Bernard Cornwell",
+//     rating: 8.67,
+//   },
+// ];
+
+// const sortedByAuthorName = books.toSorted((firstName, secondName) =>
+//   firstName.author.localeCompare(secondName.author)
+// );
+
+// const sortedByReversedAuthorName = books.toSorted((firstName, secondName) =>
+// secondName.author.localeCompare(firstName.author)
+// );
+
+// const sortedByAscendingRating = books.toSorted((firstName, secondName) =>
+// firstName.rating - secondName.rating
+// );
+
+// const sortedByDescentingRating = books.toSorted((firstName, secondName) =>
+// secondName.rating - firstName.rating
+// );
+
+// console.log(sortedByAuthorName);// ['The Last Kingdom', 'Enemy of God', 'The Dream of a Ridiculous Man', 'Beside Still Waters', 'Redder Than Blood']
+// console.log(sortedByReversedAuthorName);// ['Redder Than Blood', 'Beside Still Waters', 'The Dream of a Ridiculous Man', 'The Last Kingdom', 'Enemy of God']
+// console.log(sortedByAscendingRating);// ['The Dream of a Ridiculous Man', 'Redder Than Blood', 'The Last Kingdom', 'Beside Still Waters', 'Enemy of God']
+// console.log(sortedByDescentingRating);// ['Enemy of God', 'Beside Still Waters', 'The last Kingdom', 'Redder Than Blood', 'The Dream of a Ridiculous Man']
+
+//***********TODO -  Ланцюжки методів****************/
+
+// У нас є масив об'єктів з іменами, балами й відвідуваними предметами кожного студента.
+
+
+
+// const students = [
+//   { name: "Mango", score: 83, courses: ["mathematics", "physics"] },
+//   { name: "Poly", score: 59, courses: ["science", "mathematics"] },
+//   { name: "Ajax", score: 37, courses: ["physics", "biology"] },
+//   { name: "Kiwi", score: 94, courses: ["literature", "science"] },
+// ];
+
+
+
+// Необхідно отримати масив їхніх імен, відсортованих за зростанням балів за тест.
+
+// Для цього:
+
+
+
+// Відсортуємо масив методом toSorted(),
+// Після чого методом map() створимо масив значень властивості name з відсортованого масиву.
+
+
+// const sortedByAscendingScore = students.toSorted((a, b) => a.score - b.score);
+// const names = sortedByAscendingScore.map(student => student.name);
+
+// console.log(names); // ["Ajax", "Poly", "Mango", "Kiwi"]
+
+
+
+// Проблема в тому, що в нас з'являються проміжні змінні після кожної операції, крім фінальної.
+//  Змінна sortedByAscendingScore — зайва.Вона необхідна тільки для зберігання проміжного результату.
+
+
+
+// Позбутися таких «мертвих» змінних можна за допомогою групування викликів методів у ланцюжки.
+//  Кожний наступний метод буде виконуватися на основі результату роботи попереднього.
+
+
+
+// const names = students
+//   .toSorted((a, b) => a.score - b.score)
+//   .map(student => student.name);
+
+// console.log(names); // ["Ajax", "Poly", "Mango", "Kiwi"]
+
+
+
+// На масиві викликаємо метод toSorted()
+// До результату роботи методу toSorted() застосовуємо метод map()
+// Змінній names присвоюється результат роботи методу map()
+
+
+// Отримаємо масив унікальних відвідуваних предметів, відсортований за алфавітом.
+
+
+
+// const uniqueSortedCourses = students
+//   .flatMap(student => student.courses)
+//   .filter((course, index, array) => array.indexOf(course) === index)
+//   .toSorted((a, b) => a.localeCompare(b));
+
+// console.log(uniqueSortedCourses); // ["biology", "science", "literature", "mathematics", "physics"]
+
+
+
+// На вихідному масиві викликаємо flatMap() і робимо розгладжений масив усіх курсів
+// До результату методу flatMap() застосовуємо метод filter() для фільтрації унікальних елементів
+// На результаті методу filter() викликаємо toSorted()
+// Змінній uniqueSortedCourses присвоюється результат роботи методу toSorted()
+
+
+// Ланцюжок методів може бути довільної довжини, але зазвичай не більше 2-3 операцій.
+
+
+
+//     По - перше, перебираючі методи використовуються для порівняно простих операцій над колекцією.
+//     По - друге, виклик кожного наступного методу — це додаткове перебирання масиву, що за великої кількості може позначитися на продуктивності.
+
+
+//***********OPTIMIZE =TEST*************/
+
+
+// const books = [
+//   {
+//     title: "The Last Kingdom",
+//     author: "Bernard Cornwell",
+//     rating: 8.38,
+//   },
+//   {
+//     title: "Beside Still Waters",
+//     author: "Robert Sheckley",
+//     rating: 8.51,
+//   },
+//   {
+//     title: "The Dream of a Ridiculous Man",
+//     author: "Fyodor Dostoevsky",
+//     rating: 7.75,
+//   },
+//   { title: "Redder Than Blood", author: "Tanith Lee", rating: 7.94 },
+//   {
+//     title: "The Dreams in the Witch House",
+//     author: "Howard Lovecraft",
+//     rating: 8.67,
+//   },
+// ];
+// const MIN_BOOK_RATING = 8;
+
+// const names = books
+//     .filter(book => book.rating > MIN_BOOK_RATING) //залишає тільки ті книги, у яких рейтинг більший за 8.
+//     .map(book => book.author) //створює новий масив, що містить тільки імена авторів.
+//     .toSorted((a, b) => a.localeCompare(b)); //сортує масив імен авторів в алфавітному порядку.
+
+
+//     console.log(names);
 
